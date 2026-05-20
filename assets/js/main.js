@@ -35,21 +35,6 @@ if (form) {
         "Поштовий клієнт відкрито. Якщо ні — напишіть нам напряму на adwizardllc24@gmail.com";
   });
 }
-const cookie = document.querySelector(".cookie-popup");
-const accept = document.querySelector("[data-cookie-accept]");
-const reject = document.querySelector("[data-cookie-reject]");
-if (cookie && !localStorage.getItem("adwizardCookie"))
-  setTimeout(() => cookie.classList.add("show"), 700);
-[accept, reject].forEach((btn) => {
-  if (btn)
-    btn.addEventListener("click", () => {
-      localStorage.setItem(
-        "adwizardCookie",
-        btn.dataset.cookieAccept ? "accepted" : "rejected",
-      );
-      cookie.classList.remove("show");
-    });
-});
 const adminForm = document.querySelector("[data-admin-form]");
 if (adminForm) {
   adminForm.addEventListener("submit", (e) => {
@@ -59,23 +44,51 @@ if (adminForm) {
   });
 }
 
+function setCookie(name, value, days) {
+  const date = new Date();
+
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+
+  document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(";");
+
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+
+    if (cookie.startsWith(name + "=")) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+
+  return null;
+}
+
 const cookiePopup = document.getElementById("cookiePopup");
+
 const acceptCookies = document.getElementById("acceptCookies");
+
 const declineCookies = document.getElementById("declineCookies");
 
-if (!localStorage.getItem("cookieConsent")) {
+const cookieConsent = getCookie("cookieConsent");
+
+if (cookiePopup && !cookieConsent) {
   setTimeout(() => {
-    cookiePopup?.classList.add("show");
+    cookiePopup.classList.add("show");
   }, 1200);
 }
 
 acceptCookies?.addEventListener("click", () => {
-  localStorage.setItem("cookieConsent", "accepted");
+  setCookie("cookieConsent", "accepted", 15 / 1440);
+
   cookiePopup?.classList.remove("show");
 });
 
 declineCookies?.addEventListener("click", () => {
-  localStorage.setItem("cookieConsent", "declined");
+  setCookie("cookieConsent", "declined", 15 / 1440);
+
   cookiePopup?.classList.remove("show");
 });
 
