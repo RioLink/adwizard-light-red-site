@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin — ТОВ АДВІЗАРД</title>
+
+    <link rel="icon" href="../favicon.svg" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+
+  <body class="admin-body">
+    <main class="admin-box">
+      <img src="../assets/img/logo.svg" alt="ТОВ АДВІЗАРД" />
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="login">Вхід</button>
+
+        <button class="admin-tab" data-tab="register">Реєстрація</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="admin-panel active" id="login-panel">
+        <h1 style="font-size: 38px; margin-top: 20px">Admin Login</h1>
+
+        <p class="admin-note">Авторизація в системі.</p>
+
+        <form data-admin-login>
+          <label>
+            Email
+            <input type="email" required placeholder="login@example.com" />
+          </label>
+
+          <label>
+            Пароль
+            <input type="password" required placeholder="••••••••" />
+          </label>
+
+          <button class="btn btn-primary" type="submit">Увійти</button>
+
+          <p class="form-status"></p>
+        </form>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="admin-panel" id="register-panel">
+        <h1 style="font-size: 38px; margin-top: 20px">Створити акаунт</h1>
+
+        <p class="admin-note">Реєстрація нового користувача.</p>
+
+        <form data-admin-register>
+          <label>
+            Ім’я
+            <input type="text" required placeholder="Ваше ім’я" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" required placeholder="login@example.com" />
+          </label>
+
+          <label>
+            Пароль
+            <input type="password" required placeholder="••••••••" />
+          </label>
+
+          <label>
+            Підтвердження паролю
+            <input type="password" required placeholder="••••••••" />
+          </label>
+
+          <button class="btn btn-primary" type="submit">Зареєструватися</button>
+
+          <p class="form-status"></p>
+        </form>
+      </div>
+
+      <p style="margin-top: 28px">
+        <a href="../index.html">← На головну</a>
+      </p>
+    </main>
+
+    <script>
+      const tabs = document.querySelectorAll(".admin-tab");
+      const panels = document.querySelectorAll(".admin-panel");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+
+          tab.classList.add("active");
+
+          if (tab.dataset.tab === "login") {
+            document.getElementById("login-panel").classList.add("active");
+          } else {
+            document.getElementById("register-panel").classList.add("active");
+          }
+        });
+      });
+    </script>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
