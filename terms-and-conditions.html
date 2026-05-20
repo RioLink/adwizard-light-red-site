@@ -12,20 +12,32 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header" id="top">
       <div class="container nav-wrap">
-        <a class="brand" href="index.html"
-          ><img src="assets/img/logo.svg" alt="ТОВ АДВІЗАРД" /></a
-        ><button class="nav-toggle" aria-label="Відкрити меню">
+        <a class="brand" href="index.html" aria-label="ТОВ АДВІЗАРД">
+          <img src="assets/img/logo.svg" alt="Логотип ТОВ АДВІЗАРД" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Відкрити меню"
+          aria-expanded="false"
+        >
           <span></span><span></span><span></span>
         </button>
-        <nav class="main-nav">
-          <a href="index.html#services">Послуги</a
-          ><a href="index.html#process">Підхід</a
-          ><a href="index.html#numbers">Цифри</a
-          ><a href="index.html#contact">Контакти</a>
+
+        <nav class="main-nav" aria-label="Головна навігація">
+          <a href="#services">Послуги</a>
+          <a href="#process">Підхід</a>
+          <a href="#numbers">Цифри</a>
+          <a href="#contact">Контакти</a>
         </nav>
-        <a class="header-cta" href="index.html#contact">Обговорити проєкт</a>
+
+        <div class="header-actions">
+          <a class="contacts" href="contact.html">Про нас</a>
+          <a class="admin-btn" href="admin/">Вхід</a>
+          <a class="header-cta" href="index.html#contact">Обговорити проєкт</a>
+        </div>
       </div>
     </header>
     <main>
