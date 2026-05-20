@@ -78,3 +78,91 @@ declineCookies?.addEventListener("click", () => {
   localStorage.setItem("cookieConsent", "declined");
   cookiePopup?.classList.remove("show");
 });
+
+const registerForm = document.querySelector("[data-admin-register]");
+
+if (registerForm) {
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const password = document.getElementById("registerPassword");
+    const confirmPassword = document.getElementById("registerConfirmPassword");
+
+    const status = registerForm.querySelector(".form-status");
+
+    if (password.value !== confirmPassword.value) {
+      status.textContent = "Паролі не співпадають.";
+
+      status.style.color = "#dc2626";
+
+      return;
+    }
+
+    status.textContent =
+      "Лист для підтвердження відправлено на email. Перевірте папку Спам.";
+
+    status.style.color = "#16a34a";
+
+    registerForm.reset();
+  });
+}
+
+const loginForm = document.querySelector("[data-admin-login]");
+
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const status = loginForm.querySelector(".form-status");
+
+    status.textContent =
+      "Демо-адмінка: авторизація недоступна у статичній версії сайту.";
+
+    status.style.color = "#ea580c";
+  });
+}
+
+const forgotPasswordBtn = document.querySelector(".forgot-password");
+
+const forgotModal = document.getElementById("forgotModal");
+
+const closeForgotModal = document.getElementById("closeForgotModal");
+
+const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+
+if (forgotPasswordBtn && forgotModal) {
+  forgotPasswordBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    forgotModal.classList.add("show");
+  });
+}
+
+closeForgotModal?.addEventListener("click", () => {
+  forgotModal.classList.remove("show");
+});
+
+forgotModal?.addEventListener("click", (e) => {
+  if (e.target === forgotModal) {
+    forgotModal.classList.remove("show");
+  }
+});
+
+if (forgotPasswordForm) {
+  forgotPasswordForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const status = forgotPasswordForm.querySelector(".form-status");
+
+    status.textContent =
+      "Лист для відновлення паролю відправлено на email. Перевірте папку Спам.";
+
+    status.style.color = "#16a34a";
+
+    forgotPasswordForm.reset();
+
+    setTimeout(() => {
+      forgotModal.classList.remove("show");
+    }, 2500);
+  });
+}

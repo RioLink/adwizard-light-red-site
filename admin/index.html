@@ -8,7 +8,25 @@
     <link rel="icon" href="../favicon.svg" />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeForgotModal">×</button>
 
+      <h3>Відновлення паролю</h3>
+
+      <p>
+        Введіть email, на який буде відправлено лист для відновлення паролю.
+      </p>
+
+      <form id="forgotPasswordForm">
+        <input type="email" required placeholder="your@email.com" />
+
+        <button class="btn btn-primary" type="submit">Відправити</button>
+
+        <p class="form-status"></p>
+      </form>
+    </div>
+  </div>
   <body class="admin-body">
     <main class="admin-box">
       <img src="../assets/img/logo.svg" alt="ТОВ АДВІЗАРД" />
@@ -38,6 +56,10 @@
 
           <button class="btn btn-primary" type="submit">Увійти</button>
 
+          <div class="admin-extra">
+            <a href="#" class="forgot-password"> Забули пароль? </a>
+          </div>
+
           <p class="form-status"></p>
         </form>
       </div>
@@ -61,12 +83,22 @@
 
           <label>
             Пароль
-            <input type="password" required placeholder="••••••••" />
+            <input
+              id="registerPassword"
+              type="password"
+              required
+              placeholder="••••••••"
+            />
           </label>
 
           <label>
             Підтвердження паролю
-            <input type="password" required placeholder="••••••••" />
+            <input
+              id="registerConfirmPassword"
+              type="password"
+              required
+              placeholder="••••••••"
+            />
           </label>
 
           <button class="btn btn-primary" type="submit">Зареєструватися</button>
